@@ -1,0 +1,4 @@
+enum MovementDirection {
+  right,
+  left,
+}

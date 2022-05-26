@@ -1,0 +1,25 @@
+{
+  "states": [
+    "q0", "q1", "qf"
+  ],
+  "alphabet": [
+    "0", "1"
+  ],
+  "tapeSymbols": [
+    "X", "Y"
+  ],
+  "transitionFunction": [
+    {
+      "readSymbol": "0",
+      "currentState": "q0",
+      "movementDirection": "right",
+      "nextState": "q0",
+      "writtenSymbol": "X"
+    }
+  ],
+  "initialState": "q0",
+  "blankState": "B",
+  "finalStates": [
+    "qf"
+  ]
+}
