@@ -1,0 +1,90 @@
+[
+  {
+    "states": ["q0", "q1", "q2", "q3", "q4"],
+    "alphabet": ["0", "1"],
+    "tapeSymbols": ["X", "Y"],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": ["q3"],
+    "transitions": [
+      {
+        "readSymbol": "0",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "X"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q3",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "Y",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "Y"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "Y",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "Y"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "Y"
+      }, 
+      {
+        "readSymbol": "0",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "Y",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "Y"
+      },
+      {
+        "readSymbol": "X",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "X"
+      },
+      {
+        "readSymbol": "Y",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "Y"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q3",
+        "writtenSymbol": "B"
+      }
+    ]
+    
+  }
+]
