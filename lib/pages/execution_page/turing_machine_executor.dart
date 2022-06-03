@@ -11,12 +11,14 @@ class TuringMachineExecutor extends ChangeNotifier {
 
   late String currentState;
   late String tape;
+  late Map<int, String> tapeView;
 
   TuringMachineExecutor({
     required this.input,
     required this.turingMachine,
   }) {
     tape = "$input${turingMachine.blankState}";
+    tapeView = "$input${turingMachine.blankState}".split("").asMap();
     currentState = turingMachine.initialState;
   }
 
@@ -26,6 +28,7 @@ class TuringMachineExecutor extends ChangeNotifier {
       return element.readSymbol == symbolBeingRead && element.currentState == currentState;
     }).toList();
     if (resultingTransition.isEmpty) {
+      print("Cadeia Rejeitada!");
       // REJEITA A CADEIA
       return;
     }

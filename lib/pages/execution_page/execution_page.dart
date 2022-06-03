@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:turing_machine/models/turing_machine.dart';
@@ -20,9 +22,13 @@ class ExecutionPage extends StatefulWidget {
 class _ExecutionPageState extends State<ExecutionPage> {
   late TuringMachineExecutor executor;
 
+  bool isRunning = false;
+  late final Timer _timer;
+
   @override
   void initState() {
     super.initState();
+
     executor = TuringMachineExecutor(
       input: widget.input,
       turingMachine: widget.turingMachine,
@@ -49,7 +55,7 @@ class _ExecutionPageState extends State<ExecutionPage> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: executor.tape.split("").map((e) {
+                  children: executor.tapeView.entries.map((e) {
                     return Container(
                       height: 48,
                       width: 48,
@@ -58,10 +64,11 @@ class _ExecutionPageState extends State<ExecutionPage> {
                           width: 1,
                           color: Colors.black,
                         ),
+                        color: e.key == executor.headLocation ? Colors.red : Colors.transparent,
                       ),
                       child: Center(
                         child: Text(
-                          e,
+                          executor.tape.split("").elementAt(e.key),
                           style: const TextStyle(
                             fontSize: 20,
                           ),
@@ -80,11 +87,18 @@ class _ExecutionPageState extends State<ExecutionPage> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    executor.processTapeSymbol();
+                    setState(() {
+                      isRunning = !isRunning;
+                    });
+                    if (isRunning) {
+                      _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+                        executor.processTapeSymbol();
+                      });
+                    }
                   },
-                  child: const Text(
-                    "AVANÇAR",
-                    style: TextStyle(
+                  child: Text(
+                    !isRunning ? "Iniciar" : "Parar",
+                    style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
