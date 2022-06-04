@@ -1,5 +1,7 @@
 [
   {
+    "name": "Máquina de Turing 1",
+    "description": "Reconhece a linguagem 0ˆn1ˆn",
     "states": ["q0", "q1", "q2", "q3", "q4"],
     "alphabet": ["0", "1"],
     "tapeSymbols": ["X", "Y"],

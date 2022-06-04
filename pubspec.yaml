@@ -1,7 +1,7 @@
 name: turing_machine
 description: A Turing Machine made with Dart and Flutter
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -21,4 +22,14 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/turing_machines.json
+    - assets/images/
+    - assets/jsons/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700

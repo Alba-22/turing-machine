@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'transition_function.dart';
 
 class TuringMachine {
+  final String name;
+  final String description;
   final List<String> states;
   final List<String> alphabet;
   final List<String> tapeSymbols;
@@ -12,6 +14,8 @@ class TuringMachine {
   final List<String> finalStates;
 
   TuringMachine({
+    required this.name,
+    required this.description,
     required this.states,
     required this.alphabet,
     required this.tapeSymbols,
@@ -23,6 +27,8 @@ class TuringMachine {
 
   Map<String, dynamic> toMap() {
     return {
+      'name': name,
+      'description': description,
       'states': states,
       'alphabet': alphabet,
       'tapeSymbols': tapeSymbols,
@@ -35,6 +41,8 @@ class TuringMachine {
 
   factory TuringMachine.fromMap(Map<String, dynamic> map) {
     return TuringMachine(
+      name: map['name'] ?? '',
+      description: map['description'] ?? '',
       states: List<String>.from(map['states']),
       alphabet: List<String>.from(map['alphabet']),
       tapeSymbols: List<String>.from(map['tapeSymbols']),
