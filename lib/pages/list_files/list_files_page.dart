@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turing_machine/components/input_dialog.dart';
+import 'package:turing_machine/components/invalid_machine_dialog.dart';
 import 'package:turing_machine/models/turing_machine.dart';
 import 'package:turing_machine/pages/execution_page/execution_page.dart';
 
@@ -55,25 +56,22 @@ class _ListFilesPageState extends State<ListFilesPage> {
                         return MachineListTile(
                           machine: machine,
                           onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return InputDialog(
-                                  machine: machine,
-                                  onNext: (String input) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ExecutionPage(
-                                          turingMachine: machine,
-                                          input: input,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            );
+                            final isMachineInvalid = _isMachineInvalid(machine);
+                            if (isMachineInvalid) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return InvalidMachineDialog(
+                                    machine: machine,
+                                    onTap: () {
+                                      _showInputDialog(context, machine);
+                                    },
+                                  );
+                                },
+                              );
+                            } else {
+                              _showInputDialog(context, machine);
+                            }
                           },
                         );
                       },
@@ -108,5 +106,63 @@ class _ListFilesPageState extends State<ListFilesPage> {
         ),
       ),
     );
+  }
+
+  void _showInputDialog(BuildContext context, TuringMachine machine) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return InputDialog(
+          machine: machine,
+          onNext: (String input) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ExecutionPage(
+                  turingMachine: machine,
+                  input: input,
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  bool _isMachineInvalid(TuringMachine machine) {
+    //Tem algum estado final que não faz parte da lista de estados ?
+    for (final finalState in machine.finalStates) {
+      if (!machine.states.contains(finalState)) {
+        return true;
+      }
+    }
+
+    //O estado inicial não faz parte da lista de estados ?
+    for (final state in machine.states) {
+      if (!machine.states.contains(state)) {
+        return true;
+      }
+    }
+
+    for (final transition in machine.transitions) {
+      //O estado atual não está na lista de transicoes?
+      if (!machine.states.contains(transition.currentState)) return true;
+
+      //O próximo estado não está na lista de transicoes?
+      if (!machine.states.contains(transition.nextState)) return true;
+
+      //Tem algum simbolo lido da lista de transicoes que não faz parte do alfabeto dos simbolos que podem ser lidos ?
+      if (!machine.alphabet.contains(transition.readSymbol) &&
+          !machine.tapeSymbols.contains(transition.readSymbol) &&
+          transition.readSymbol != machine.blankState) return true;
+
+      //Tem algum simbolo para ser escrito da lista de transicoes que não faz parte do alfabeto dos simbolos que podem ser escritos ?
+      if (!machine.tapeSymbols.contains(transition.writtenSymbol) &&
+          !machine.alphabet.contains(transition.writtenSymbol) &&
+          transition.readSymbol != machine.blankState) return true;
+    }
+
+    return false;
   }
 }
