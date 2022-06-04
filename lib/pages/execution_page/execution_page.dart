@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:turing_machine/models/turing_machine.dart';
+import '../../components/execution_header.dart';
 import 'turing_machine_executor.dart';
 
 class ExecutionPage extends StatefulWidget {
@@ -38,75 +39,81 @@ class _ExecutionPageState extends State<ExecutionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "EXECUÇÃO DA CADEIA ${widget.input}",
-        ),
-      ),
-      body: AnimatedBuilder(
-        animation: executor,
-        builder: (context, child) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: executor.tapeView.entries.map((e) {
-                    return Container(
-                      height: 48,
-                      width: 48,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1,
-                          color: Colors.black,
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            ExecutionHeader(machine: widget.turingMachine),
+            Expanded(
+              child: AnimatedBuilder(
+                animation: executor,
+                builder: (context, child) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: executor.tapeView.entries.map((e) {
+                            return Container(
+                              height: 48,
+                              width: 48,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                  color: Colors.black,
+                                ),
+                                color: e.key == executor.headLocation ? Colors.red : Colors.transparent,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  executor.tape.split("").elementAt(e.key),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        color: e.key == executor.headLocation ? Colors.red : Colors.transparent,
-                      ),
-                      child: Center(
-                        child: Text(
-                          executor.tape.split("").elementAt(e.key),
-                          style: const TextStyle(
-                            fontSize: 20,
+                        const SizedBox(height: 20),
+                        Text(
+                          "Símbolo sendo lido: ${executor.tape[executor.headLocation]}",
+                        ),
+                        Text(
+                          "Estado atual: ${executor.currentState}",
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              isRunning = !isRunning;
+                            });
+                            if (isRunning) {
+                              _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+                                executor.processTapeSymbol();
+                              });
+                            }
+                          },
+                          child: Text(
+                            !isRunning ? "Iniciar" : "Parar",
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  "Símbolo sendo lido: ${executor.tape[executor.headLocation]}",
-                ),
-                Text(
-                  "Estado atual: ${executor.currentState}",
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isRunning = !isRunning;
-                    });
-                    if (isRunning) {
-                      _timer = Timer.periodic(const Duration(milliseconds: 500), (_) {
-                        executor.processTapeSymbol();
-                      });
-                    }
-                  },
-                  child: Text(
-                    !isRunning ? "Iniciar" : "Parar",
-                    style: const TextStyle(
-                      fontSize: 16,
+                      ],
                     ),
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }
