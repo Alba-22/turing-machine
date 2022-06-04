@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:turing_machine/components/input_dialog.dart';
 import 'package:turing_machine/models/turing_machine.dart';
-import 'package:turing_machine/pages/enter_string/enter_string_page.dart';
+import 'package:turing_machine/pages/execution_page/execution_page.dart';
 
 import '../../components/home_header.dart';
 import '../../components/machine_list_tile.dart';
+
+// TODO: Validar se máquina de Turing está válida
 
 class ListFilesPage extends StatefulWidget {
   const ListFilesPage({Key? key}) : super(key: key);
@@ -52,13 +55,24 @@ class _ListFilesPageState extends State<ListFilesPage> {
                         return MachineListTile(
                           machine: machine,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EnterStringPage(
-                                  selectedTuringMachine: machine,
-                                ),
-                              ),
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return InputDialog(
+                                  machine: machine,
+                                  onNext: (String input) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ExecutionPage(
+                                          turingMachine: machine,
+                                          input: input,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             );
                           },
                         );
