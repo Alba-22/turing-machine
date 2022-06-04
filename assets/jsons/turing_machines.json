@@ -258,58 +258,6 @@
     ]
   },
   {
-    "name": "Máquina de Turing 4",
-    "description": "Erros",
-    "states": [
-      "q0",
-      "q1",
-      "q2"
-    ],
-    "alphabet": [
-      "0",
-      "1"
-    ],
-    "tapeSymbols": [
-      "0",
-      "1"
-    ],
-    "initialState": "q0",
-    "blankState": "B",
-    "finalStates": [
-      "q2"
-    ],
-    "transitions": [
-      {
-        "readSymbol": "0",
-        "currentState": "q0",
-        "movementDirection": "left",
-        "nextState": "q1",
-        "writtenSymbol": "1"
-      },
-      {
-        "readSymbol": "1",
-        "currentState": "q0",
-        "movementDirection": "right",
-        "nextState": "q1",
-        "writtenSymbol": "0"
-      },
-      {
-        "readSymbol": "1",
-        "currentState": "q1",
-        "movementDirection": "right",
-        "nextState": "q0",
-        "writtenSymbol": "1"
-      },
-      {
-        "readSymbol": "0",
-        "currentState": "q1",
-        "movementDirection": "left",
-        "nextState": "q3",
-        "writtenSymbol": "0"
-      }
-    ]
-  },
-  {
     "name": "Máquina de Turing  - Slide MT",
     "description": "Subtracao 0ˆm10ˆn, o número de 0's expressa a diferença m com n, se n > m retorne 0",
     "states": [
