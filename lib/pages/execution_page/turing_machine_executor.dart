@@ -5,7 +5,6 @@ import 'package:turing_machine/models/movement_direction.dart';
 import 'package:turing_machine/models/transition_function.dart';
 
 import 'package:turing_machine/models/turing_machine.dart';
-import 'package:turing_machine/utils/extensions.dart';
 
 enum ExecutionState {
   paused,
@@ -20,8 +19,7 @@ class TuringMachineExecutor extends ChangeNotifier {
   int headLocation = 0;
 
   late String currentState;
-  late String tape;
-  late Map<int, String> tapeView;
+  Map<int, String> tape = {};
 
   Timer? timer;
   late ExecutionState executionState;
@@ -37,8 +35,8 @@ class TuringMachineExecutor extends ChangeNotifier {
   }
 
   void initTuringMachine() {
-    tape = "$input${turingMachine.blankState}";
-    tapeView = "$input${turingMachine.blankState}".split("").asMap();
+    tape = input.split("").asMap();
+    tape = Map.fromEntries(tape.entries);
     currentState = turingMachine.initialState;
     headLocation = 0;
     executionState = ExecutionState.paused;
@@ -58,11 +56,13 @@ class TuringMachineExecutor extends ChangeNotifier {
   void handlePlayPause() {
     if (executionState == ExecutionState.paused) {
       executionState = ExecutionState.running;
+      executionMessage = "Máquina Executando";
       timer = Timer.periodic(Duration(milliseconds: _getMillisecondsValue(sliderValue)), (_) {
         processTapeSymbol();
       });
     } else if (executionState == ExecutionState.running) {
       executionState = ExecutionState.paused;
+      executionMessage = "Máquina Pausada";
       timer?.cancel();
     }
     notifyListeners();
@@ -70,19 +70,22 @@ class TuringMachineExecutor extends ChangeNotifier {
 
   void changeSpeed(double value) {
     sliderValue = value;
-    timer?.cancel();
-    timer = Timer.periodic(Duration(milliseconds: _getMillisecondsValue(sliderValue)), (_) {
-      processTapeSymbol();
-    });
+    if (executionState == ExecutionState.running) {
+      timer?.cancel();
+      timer = Timer.periodic(Duration(milliseconds: _getMillisecondsValue(sliderValue)), (_) {
+        processTapeSymbol();
+      });
+    }
     notifyListeners();
   }
 
   void processTapeSymbol() {
     executionState = ExecutionState.running;
+    executionMessage = "Máquina Executando";
     notifyListeners();
 
     //Posição atual na Fita
-    final String symbolBeingRead = tape[headLocation];
+    final String symbolBeingRead = tape[headLocation].toString();
 
     //Achando a lista de transições que casam com o símbolo lido e
     //com o estado atual, representando a tupla ∂(q0,a)
@@ -96,20 +99,24 @@ class TuringMachineExecutor extends ChangeNotifier {
       return;
     }
 
+    _reWriteSymbols(resultingTransition);
+
     //Caso, o proximo estado for o estado final, aceite a cadeia
     currentState = resultingTransition.first.nextState;
     if (turingMachine.finalStates.contains(currentState)) {
       _acceptInput();
       return;
     }
-
-    _reWriteSymbols(resultingTransition);
+    notifyListeners();
   }
 
   ///Reescreva o atual símbolo lido com o símbolo a ser escrito
   _reWriteSymbols(List<TransitionFunction> resultingTransition) {
-    tape = tape.replaceCharAt(headLocation, resultingTransition.first.writtenSymbol);
+    tape[headLocation] = resultingTransition.first.writtenSymbol;
     if (resultingTransition.first.movementDirection == MovementDirection.right) {
+      if (headLocation + 1 >= tape.length) {
+        tape[headLocation + 1] = turingMachine.blankState;
+      }
       headLocation++;
     } else {
       if (headLocation - 1 < 0) {
@@ -118,17 +125,18 @@ class TuringMachineExecutor extends ChangeNotifier {
         headLocation--;
       }
     }
-    notifyListeners();
   }
 
   void _acceptInput() {
     executionState = ExecutionState.accept;
+    executionMessage = "Máquina ACEITA a Cadeia $input";
     timer?.cancel();
     notifyListeners();
   }
 
   void _rejectInput() {
     executionState = ExecutionState.reject;
+    executionMessage = "Máquina REJEITA a Cadeia $input";
     timer?.cancel();
     notifyListeners();
   }

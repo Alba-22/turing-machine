@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/list_files/list_files_page.dart';
@@ -18,7 +19,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         fontFamily: "Inter",
       ),
+      scrollBehavior: CustomScrollBehavior(),
       home: const ListFilesPage(),
     );
   }
+}
+
+class CustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

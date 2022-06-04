@@ -10,8 +10,6 @@ import 'package:turing_machine/pages/execution_page/execution_page.dart';
 import '../../components/home_header.dart';
 import '../../components/machine_list_tile.dart';
 
-// TODO: Validar se máquina de Turing está válida
-
 class ListFilesPage extends StatefulWidget {
   const ListFilesPage({Key? key}) : super(key: key);
 

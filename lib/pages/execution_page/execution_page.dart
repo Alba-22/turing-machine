@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,7 +22,7 @@ class ExecutionPage extends StatefulWidget {
 class _ExecutionPageState extends State<ExecutionPage> {
   late TuringMachineExecutor executor;
 
-  bool isRunning = false;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -77,22 +75,23 @@ class _ExecutionPageState extends State<ExecutionPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 49.0 * executor.tape.length,
+                          width: 50.0 * executor.tape.length,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: executor.tapeView.entries.map((e) {
+                            children: executor.tape.entries.map((e) {
                               if (e.key == executor.headLocation) {
                                 return Stack(
                                   children: [
-                                    SvgPicture.asset(
-                                      "assets/images/head.svg",
-                                      height: 60,
-                                      width: 50,
+                                    Positioned(
+                                      child: SvgPicture.asset(
+                                        "assets/images/head.svg",
+                                        width: 50,
+                                      ),
                                     ),
                                     Positioned(
                                       right: 0,
                                       left: 0,
-                                      bottom: 36,
+                                      bottom: 40,
                                       child: Center(
                                         child: Text(
                                           executor.currentState,
@@ -107,43 +106,29 @@ class _ExecutionPageState extends State<ExecutionPage> {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: executor.tapeView.entries.map((e) {
-                            return Container(
-                              height: 49,
-                              width: 49,
-                              decoration: BoxDecoration(
-                                border: BorderDirectional(
-                                  bottom: const BorderSide(
-                                    width: 1,
-                                    color: Colors.black,
-                                  ),
-                                  top: const BorderSide(
-                                    width: 1,
-                                    color: Colors.black,
-                                  ),
-                                  start: const BorderSide(
-                                    width: 1,
-                                    color: Colors.black,
-                                  ),
-                                  end: BorderSide(
-                                    width: e.key == executor.tape.length ? 1 : 0,
-                                    color: Colors.black,
+                        Container(
+                          color: Colors.purple[100],
+                          height: 64,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: executor.tape.entries.map((e) {
+                              return Container(
+                                height: 64,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  color: e.key.isEven ? Colors.purple[200] : Colors.purple[100],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    e.value,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
-                                color: e.key == executor.headLocation ? Colors.red : Colors.transparent,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  executor.tape.split("").elementAt(e.key),
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          ),
                         ),
                         const SizedBox(height: 20),
                         Row(
@@ -197,11 +182,13 @@ class _ExecutionPageState extends State<ExecutionPage> {
                             value: executor.sliderValue,
                             onChanged: executor.changeSpeed,
                             divisions: 8,
-                            label: "${executor.sliderValue * 2}x",
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Text(executor.executionState.name),
+                        Text(
+                          executor.executionMessage,
+                          style: _messageStyle(),
+                        ),
                       ],
                     ),
                   );
@@ -212,5 +199,14 @@ class _ExecutionPageState extends State<ExecutionPage> {
         ),
       ),
     );
+  }
+
+  TextStyle _messageStyle() {
+    if (executor.executionState == ExecutionState.accept) {
+      return const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green);
+    } else if (executor.executionState == ExecutionState.reject) {
+      return const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red);
+    }
+    return const TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.black);
   }
 }
