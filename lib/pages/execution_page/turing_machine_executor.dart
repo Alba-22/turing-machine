@@ -120,7 +120,10 @@ class TuringMachineExecutor extends ChangeNotifier {
       headLocation++;
     } else {
       if (headLocation - 1 < 0) {
-        _rejectInput();
+        for (int i = tape.length - 1; i >= 0; i--) {
+          tape[i + 1] = tape[i]!;
+        }
+        tape[0] = turingMachine.blankState;
       } else {
         headLocation--;
       }
