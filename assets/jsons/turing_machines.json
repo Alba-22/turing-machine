@@ -472,5 +472,286 @@
         "writtenSymbol": "B"
       }
     ]
+  },
+  {
+    "name": "Teste 1",
+    "description": "Aula TC - TESTE 1",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4"
+    ],
+    "alphabet": [
+      "a",
+      "b"
+    ],
+    "tapeSymbols": [
+      "a",
+      "b",
+      "x",
+      "y",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q4"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "a",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "B"
+      }
+    ]
+  },
+  {
+    "name": "Teste 2",
+    "description": "Aula TC- TESTE 2",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4",
+      "q5"
+    ],
+    "alphabet": [
+      "a",
+      "b",
+      "c"
+    ],
+    "tapeSymbols": [
+      "a",
+      "b",
+      "c",
+      "x",
+      "y",
+      "z",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q5"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "a",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "b"
+      },
+      {
+        "readSymbol": "c",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "z"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "b"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "z",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "z"
+      },
+      {
+        "readSymbol": "z",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "z"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "z",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "z"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "B"
+      }
+    ]
+  },
+  {
+    "name": "Máquina de Turing  - Slide MT",
+    "description": "Subtracao 0ˆm10ˆn, o número de 0's expressa a diferença m com n, se n > m retorne 0",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4",
+      "q5",
+      "q6"
+    ],
+    "alphabet": [
+      "0",
+      "1",
+      "B"
+    ],
+    "tapeSymbols": [
+      "0",
+      "1",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q6"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "0",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "B"
+      }
+    ]
   }
 ]
