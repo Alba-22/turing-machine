@@ -638,7 +638,7 @@
         "readSymbol": "B",
         "currentState": "q4",
         "movementDirection": "right",
-        "nextState": "q4",
+        "nextState": "q5",
         "writtenSymbol": "B"
       }
     ]
