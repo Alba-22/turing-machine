@@ -676,7 +676,7 @@
     ],
     "transitions": [
       {
-        "readSymbol": "0",
+        "readSymbol": "1",
         "currentState": "q0",
         "movementDirection": "right",
         "nextState": "q1",
@@ -763,7 +763,7 @@
         "readSymbol": "1",
         "currentState": "q4",
         "movementDirection": "left",
-        "nextState": "q4",
+        "nextState": "qf",
         "writtenSymbol": "1"
       },
       {
