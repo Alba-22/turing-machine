@@ -718,31 +718,35 @@
     ]
   },
   {
-    "name": "Máquina de Turing  - Slide MT",
-    "description": "Subtracao 0ˆm10ˆn, o número de 0's expressa a diferença m com n, se n > m retorne 0",
+    "name": "Teste 3",
+    "description": "Aula TC - TESTE 3",
     "states": [
       "q0",
       "q1",
       "q2",
       "q3",
       "q4",
-      "q5",
-      "q6"
+      "qf",
+      "qv",
+      "q>=",
+      "q<"
     ],
     "alphabet": [
       "0",
-      "1",
-      "B"
+      "1"
     ],
     "tapeSymbols": [
       "0",
       "1",
+      "x",
+      "y",
       "B"
     ],
     "initialState": "q0",
     "blankState": "B",
     "finalStates": [
-      "q6"
+      "q>=",
+      "q<"
     ],
     "transitions": [
       {
@@ -750,6 +754,160 @@
         "currentState": "q0",
         "movementDirection": "right",
         "nextState": "q1",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q4",
+        "movementDirection": "left",
+        "nextState": "q4",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q4",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "qf",
+        "movementDirection": "right",
+        "nextState": "q<",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "qv",
+        "movementDirection": "right",
+        "nextState": "q>=",
         "writtenSymbol": "B"
       }
     ]
