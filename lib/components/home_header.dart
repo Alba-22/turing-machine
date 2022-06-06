@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -10,8 +11,9 @@ class HomeHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
+        const AutoSizeText(
           "IMPLEMENTAÇÃO DA MÁQUINA DE TURING",
+          maxLines: 1,
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,

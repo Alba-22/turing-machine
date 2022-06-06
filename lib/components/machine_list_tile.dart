@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:turing_machine/models/turing_machine.dart';
@@ -43,16 +44,18 @@ class MachineListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    AutoSizeText(
                       machine.name,
+                      maxLines: 1,
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       machine.description,
+                      maxLines: 1,
                       style: const TextStyle(
                         color: Colors.black45,
                         fontSize: 16,

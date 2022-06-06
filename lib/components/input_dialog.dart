@@ -23,7 +23,7 @@ class _InputDialogState extends State<InputDialog> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.3,
+        height: MediaQuery.of(context).size.height > 600 ? MediaQuery.of(context).size.height * 0.4 : 300,
         width: MediaQuery.of(context).size.width * 0.25,
         decoration: BoxDecoration(
           color: Colors.white,

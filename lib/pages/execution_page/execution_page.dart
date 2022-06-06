@@ -163,10 +163,12 @@ class _ExecutionPageState extends State<ExecutionPage> {
                             ),
                             const SizedBox(width: 12),
                             InkWell(
-                              onTap: () {
-                                executor.processTapeSymbol();
-                                executor.handlePlayPause();
-                              },
+                              onTap: (executor.executionState == ExecutionState.accept) || (executor.executionState == ExecutionState.reject)
+                                  ? null
+                                  : () {
+                                      executor.processTapeSymbol();
+                                      executor.handlePlayPause();
+                                    },
                               child: const Icon(
                                 Icons.double_arrow_rounded,
                                 size: 40,
