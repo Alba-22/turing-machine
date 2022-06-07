@@ -1,5 +1,484 @@
 [
   {
+    "name": "TESTE 1",
+    "description": "Teste 1 - 07/06",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4",
+      "q5",
+      "q6",
+      "q7"
+    ],
+    "alphabet": [
+      "a",
+      "b",
+      "c"
+    ],
+    "tapeSymbols": [
+      "a",
+      "b",
+      "c",
+      "x",
+      "y",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q7"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "a",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "b"
+      },
+      {
+        "readSymbol": "c",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "c"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q5",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "b"
+      },
+      {
+        "readSymbol": "c",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "c"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q4",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q4",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q4",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q4",
+        "movementDirection": "left",
+        "nextState": "q5",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "c",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q6",
+        "writtenSymbol": "c"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q6",
+        "movementDirection": "right",
+        "nextState": "q6",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q6",
+        "movementDirection": "right",
+        "nextState": "q6",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q6",
+        "movementDirection": "left",
+        "nextState": "q7",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "a",
+        "currentState": "q5",
+        "movementDirection": "left",
+        "nextState": "q5",
+        "writtenSymbol": "a"
+      },
+      {
+        "readSymbol": "b",
+        "currentState": "q5",
+        "movementDirection": "left",
+        "nextState": "q5",
+        "writtenSymbol": "b"
+      },
+      {
+        "readSymbol": "c",
+        "currentState": "q5",
+        "movementDirection": "left",
+        "nextState": "q5",
+        "writtenSymbol": "c"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q5",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q5",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "y"
+      }
+    ]
+  },
+  {
+    "name": "TESTE 2",
+    "description": "Teste 2 - 07/06",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4",
+      "qf",
+      "qv",
+      "q>=",
+      "q<"
+    ],
+    "alphabet": [
+      "0",
+      "1"
+    ],
+    "tapeSymbols": [
+      "0",
+      "1",
+      "x",
+      "y",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q>=",
+      "q<"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "1",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q2",
+        "movementDirection": "right",
+        "nextState": "q2",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "x"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "q4",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "y"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q4",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q4",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "qf",
+        "movementDirection": "left",
+        "nextState": "qf",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "qf",
+        "movementDirection": "right",
+        "nextState": "q<",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "y",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "x",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "qv",
+        "movementDirection": "left",
+        "nextState": "qv",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "qv",
+        "movementDirection": "right",
+        "nextState": "q>=",
+        "writtenSymbol": "B"
+      }
+    ]
+  },
+  {
+    "name": "TESTE 3",
+    "description": "Teste 3 - 07/06",
+    "states": [
+      "q0",
+      "q1",
+      "q2",
+      "q3",
+      "q4"
+    ],
+    "alphabet": [
+      "1"
+    ],
+    "tapeSymbols": [
+      "0",
+      "1",
+      "B"
+    ],
+    "initialState": "q0",
+    "blankState": "B",
+    "finalStates": [
+      "q4"
+    ],
+    "transitions": [
+      {
+        "readSymbol": "1",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q0",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "0",
+        "currentState": "q0",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q1",
+        "movementDirection": "right",
+        "nextState": "q1",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q1",
+        "movementDirection": "left",
+        "nextState": "q2",
+        "writtenSymbol": "B"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q2",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "0"
+      },
+      {
+        "readSymbol": "1",
+        "currentState": "q3",
+        "movementDirection": "left",
+        "nextState": "q3",
+        "writtenSymbol": "1"
+      },
+      {
+        "readSymbol": "B",
+        "currentState": "q3",
+        "movementDirection": "right",
+        "nextState": "q4",
+        "writtenSymbol": "B"
+      }
+    ]
+  },
+  {
     "name": "Máquina de Turing 1",
     "description": "Reconhece a linguagem 0ˆn1ˆn",
     "states": [
