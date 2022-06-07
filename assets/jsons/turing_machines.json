@@ -99,7 +99,7 @@
         "currentState": "q2",
         "movementDirection": "right",
         "nextState": "q2",
-        "writtenSymbol": "1"
+        "writtenSymbol": "a"
       },
       {
         "readSymbol": "b",
